@@ -159,11 +159,14 @@ def lead_stream(request):
 		while True:
 			payload = get_next_event(event_queue)
 			if payload is None:
-				yield 'event: keepalive\ndata: {}\n\n'
+				yield ':\n\n'
 				continue
 			yield f'data: {json.dumps(payload)}\n\n'
 
 	response = StreamingHttpResponse(event_stream(), content_type='text/event-stream')
 	response['Cache-Control'] = 'no-cache'
 	response['X-Accel-Buffering'] = 'no'
+	response['Access-Control-Allow-Origin'] = '*'
+	response['Access-Control-Allow-Methods'] = 'GET, OPTIONS'
+	response['Access-Control-Allow-Headers'] = 'Content-Type'
 	return response
