@@ -56,9 +56,16 @@ function App() {
     })
 
     const events = new EventSource(`${API_BASE}/leads/stream/`)
+    events.onerror = (error) => {
+      console.error('EventSource connection error:', error, events.readyState)
+      if (events.readyState === EventSource.CLOSED) {
+        console.error('SSE connection closed by server')
+      }
+    }
     events.onmessage = (event) => {
       try {
         const payload = JSON.parse(event.data)
+        console.log('SSE message received:', payload.type)
         if (payload.type === 'snapshot') {
           setLeads(payload.leads || [])
           setAnalytics(payload.analytics || { totalLeads: 0, totalPipelineValue: 0 })
