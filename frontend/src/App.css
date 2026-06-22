@@ -1,264 +1,35 @@
-.portal-shell {
-  width: min(1200px, 94vw);
-  margin: 2rem auto 3rem;
-  display: grid;
-  gap: 1.25rem;
-  animation: riseIn 500ms ease-out;
-}
+/* Shared global utilities */
 
-.hero-card,
-.panel {
-  background: var(--surface);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  box-shadow: 0 18px 30px rgba(14, 33, 53, 0.08);
-}
-
-.hero-card {
-  padding: 2rem;
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-card::after {
-  content: '';
-  position: absolute;
-  width: 260px;
-  height: 260px;
-  border-radius: 999px;
-  right: -60px;
-  top: -80px;
-  background: radial-gradient(circle, rgba(232, 109, 34, 0.35), rgba(232, 109, 34, 0));
+.page {
+  min-height: calc(100vh - 60px);
 }
 
 .eyebrow {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   letter-spacing: 0.12em;
   text-transform: uppercase;
   color: var(--accent);
   margin: 0;
 }
 
-.hero-card h1 {
-  margin: 0.65rem 0;
-  font-size: clamp(1.7rem, 2.4vw, 2.8rem);
-  line-height: 1.15;
-}
-
-.hero-copy {
-  color: var(--muted);
-  margin: 0;
-  max-width: 65ch;
-}
-
-.metrics-row {
-  display: flex;
-  gap: 0.85rem;
-  margin-top: 1.2rem;
-  flex-wrap: wrap;
-}
-
-.metric-chip {
-  padding: 0.8rem 1rem;
-  border-radius: 12px;
-  border: 1px solid var(--line);
-  background: rgba(255, 255, 255, 0.7);
-  min-width: 200px;
-}
-
-.metric-chip span {
-  display: block;
-  color: var(--muted);
-  font-size: 0.86rem;
-}
-
-.metric-chip strong {
-  display: block;
-  margin-top: 0.35rem;
-  font-size: 1.3rem;
-}
-
-.panel-grid {
-  display: grid;
-  gap: 1.25rem;
-  grid-template-columns: 1.5fr 1fr;
-}
-
-.panel {
-  padding: 1.2rem;
-}
-
-.panel h2 {
-  margin: 0 0 0.8rem;
-  font-size: 1.1rem;
-}
-
-form {
-  display: grid;
-  gap: 0.65rem;
-}
-
-label {
-  display: grid;
-  gap: 0.25rem;
-  font-size: 0.86rem;
-  color: var(--muted);
-}
-
-input,
-select,
-button {
-  border-radius: 10px;
-  border: 1px solid var(--line);
-  font: inherit;
-}
-
-input,
-select {
-  padding: 0.65rem 0.75rem;
-  background: #fff;
-  color: var(--text);
-}
-
-button {
-  padding: 0.72rem 0.85rem;
-  background: linear-gradient(90deg, #e86d22, #f5a93c);
-  color: #fff;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 160ms ease;
-}
-
-button:hover {
-  transform: translateY(-1px);
-}
-
-button:disabled {
-  opacity: 0.7;
-  cursor: default;
-}
-
-.router-status {
-  display: flex;
-  gap: 0.65rem;
-  align-items: flex-start;
-  margin-bottom: 1rem;
-}
-
-.router-status p,
-.router-note,
-.error-message {
-  margin: 0;
-  color: var(--muted);
-}
-
-.error-message {
-  color: #a32323;
-  margin-top: 0.2rem;
-}
-
 .dot {
-  width: 12px;
-  height: 12px;
+  display: inline-block;
+  width: 10px;
+  height: 10px;
   border-radius: 999px;
-  margin-top: 0.2rem;
+  flex-shrink: 0;
 }
 
 .dot.online {
   background: #18a66f;
-  box-shadow: 0 0 0 6px rgba(24, 166, 111, 0.15);
+  box-shadow: 0 0 0 4px rgba(24, 166, 111, 0.18);
 }
 
 .dot.offline {
   background: #9c9da9;
 }
 
-.toggle.enabled {
-  background: linear-gradient(90deg, #274c99, #2f7ec0);
-}
-
-.toggle.disabled {
-  background: linear-gradient(90deg, #72768f, #9da1b9);
-}
-
-.table-panel {
-  overflow: hidden;
-}
-
-.table-wrap {
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 0.9rem;
-}
-
-th,
-td {
-  padding: 0.7rem 0.5rem;
-  text-align: left;
-  border-bottom: 1px solid var(--line);
-  vertical-align: top;
-}
-
-th {
-  color: var(--muted);
-  font-weight: 600;
-}
-
-.badge {
-  display: inline-block;
-  border-radius: 999px;
-  padding: 0.2rem 0.6rem;
-  font-size: 0.72rem;
-  font-weight: 700;
-}
-
-.badge.ingested,
-.badge.synced {
-  background: rgba(24, 166, 111, 0.14);
-  color: #0e7d52;
-}
-
-.badge.failed,
-.badge.rejected {
-  background: rgba(164, 35, 35, 0.14);
-  color: #8e1919;
-}
-
-.badge.paused,
-.badge.skipped,
-.badge.pending {
-  background: rgba(94, 112, 132, 0.17);
-  color: #324255;
-}
-
-.empty-state {
-  color: var(--muted);
-  text-align: center;
-  padding: 1rem;
-}
-
-@media (max-width: 900px) {
-  .panel-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card,
-  .panel {
-    border-radius: 16px;
-  }
-}
-
-@keyframes riseIn {
-  from {
-    opacity: 0;
-    transform: translateY(8px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.dot.pending {
+  background: #e8a02b;
+  box-shadow: 0 0 0 4px rgba(232, 160, 43, 0.18);
 }
