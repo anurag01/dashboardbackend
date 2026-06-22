@@ -1,0 +1,35 @@
+/* Shared global utilities */
+
+.page {
+  min-height: calc(100vh - 60px);
+}
+
+.eyebrow {
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin: 0;
+}
+
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.dot.online {
+  background: #18a66f;
+  box-shadow: 0 0 0 4px rgba(24, 166, 111, 0.18);
+}
+
+.dot.offline {
+  background: #9c9da9;
+}
+
+.dot.pending {
+  background: #e8a02b;
+  box-shadow: 0 0 0 4px rgba(232, 160, 43, 0.18);
+}
